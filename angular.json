@@ -26,8 +26,12 @@
             ],
             "styles": [
               "src/styles.css"
+
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/flowbite/dist/flowbite.min.js"
+
+            ]
           },
           "configurations": {
             "production": {
@@ -94,5 +98,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "60e17df6-a742-4e13-b5cb-d29af0d0e697"
   }
 }
