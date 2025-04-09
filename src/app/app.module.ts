@@ -8,6 +8,8 @@ import { CoreModule } from './core/core.module';
 import { RecruteurModule } from './recruteur/recruteur.module';
 import { CandidatModule } from './candidat/candidat.module';
 import {HttpClientModule } from '@angular/common/http';
+import { ResumeModule } from './resume/resume.module';
+import { PosteModule } from './poste/poste.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,7 @@ import {HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule , AuthModule , CoreModule , RecruteurModule , CandidatModule,HttpClientModule
+    AppRoutingModule , AuthModule , CoreModule , RecruteurModule , CandidatModule,HttpClientModule , ResumeModule , PosteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

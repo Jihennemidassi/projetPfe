@@ -6,7 +6,11 @@ const routes: Routes = [
   {path:'profile', loadChildren: () => import('./core/core.module').then(m => m.CoreModule)},
   {path:'recruteur', loadChildren: () => import('./recruteur/recruteur.module').then(m => m.RecruteurModule)},
   {path:'candidat', loadChildren: () => import('./candidat/candidat.module').then(m => m.CandidatModule)},
-  {path:'poste', loadChildren: () => import('./poste/poste.module').then(m => m.PosteModule)},];
+  {path:'poste', loadChildren: () => import('./poste/poste.module').then(m => m.PosteModule)},
+  {path:'skill', loadChildren: () => import('./skills/skills.module').then(m => m.SkillsModule)},
+  {path:'experience', loadChildren: () => import('./experience/experience.module').then(m => m.ExperienceModule)},
+  {path:'resume', loadChildren: () => import('./resume/resume.module').then(m => m.ResumeModule)}];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

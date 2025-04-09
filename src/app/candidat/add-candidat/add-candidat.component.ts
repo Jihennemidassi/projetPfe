@@ -14,6 +14,7 @@ export class AddCandidatComponent implements OnInit{
     this.form=fb.group({
       name:['',Validators.required],
       lastName:['',Validators.required],
+      password:['',[Validators.required, Validators.minLength(6)]],
       email:['',[Validators.email,Validators.required]],
       age:[0]
   
