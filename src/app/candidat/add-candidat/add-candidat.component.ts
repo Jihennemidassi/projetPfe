@@ -23,7 +23,7 @@ export class AddCandidatComponent implements OnInit{
   ngOnInit(): void {
  
   }
-  ubmit(){
+  submit(){
     console.log(this.form.value)
     this.serviceCandidat.createCandidat(this.form.value).subscribe(ps=>{
       console.log(ps)

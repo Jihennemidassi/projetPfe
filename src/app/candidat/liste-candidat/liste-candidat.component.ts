@@ -8,7 +8,6 @@ import { CandidatService } from '../candidat.service';
 export class ListeCandidatComponent implements OnInit {
   liste: any;
   l: any;
-  // liste=[{"id":1,"name":"hajer", "age":20},{"id":2,"name":"ali","age":30},{"id":3,"name":"mohamed","age":18}]
 constructor(private CandidatService:CandidatService){
 
 }

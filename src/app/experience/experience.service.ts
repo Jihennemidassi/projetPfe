@@ -16,7 +16,7 @@ export class ExperienceService {
     }
   
     getAllExperiences(): Observable<any> {
-      return this.http.get(`${this.apiUrl}/list-experience`);
+      return this.http.get(`${this.apiUrl}/liste-experience`);
     }
   
   

@@ -16,7 +16,7 @@ export class SkillsService {
   }
 
   getAllSkills(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/list-skill`);
+    return this.http.get(`${this.apiUrl}/liste-skill`);
   }
 
 
