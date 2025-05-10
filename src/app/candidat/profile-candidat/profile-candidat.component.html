@@ -1,0 +1,31 @@
+<section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+    <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
+      <div class="mt-6 flow-root">
+        <div class="-my-6 divide-y divide-gray-200 dark:divide-gray-800">
+            <ul  *ngFor="let element of liste" class="space-y-6 py-6 md:py-8">      
+                <li>
+          <div class="space-y-4 py-6 md:py-8">
+            <div class="grid gap-4">
+              <div>
+                <span class="inline-block rounded bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-300 md:mb-0">skills </span>
+              </div>
+  
+              <a href="#" class="text-xl font-semibold text-gray-900 hover:underline dark:text-white">{{element.post}}</a>
+            </div>
+            <p class="text-base font-normal text-gray-500 dark:text-gray-400">{{element.description}}</p>
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+             Posted by
+              <a href="#" class="text-gray-900 hover:underline dark:text-white">{{element.recruteur}}</a>
+            </p>
+          </div>
+           
+            </li>
+             </ul>
+        </div>
+      </div>
+  
+      <div class="mt-6 flex items-center justify-center lg:justify-start">
+        <button type="button" class="w-full rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">View more questions</button>
+      </div>
+    </div>
+  </section>

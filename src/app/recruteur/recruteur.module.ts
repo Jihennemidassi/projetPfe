@@ -7,6 +7,7 @@ import { UpdateRecruteurComponent } from './update-recruteur/update-recruteur.co
 import { DeleteRecruteurComponent } from './delete-recruteur/delete-recruteur.component';
 import { ListeRecruteurComponent } from './liste-recruteur/liste-recruteur.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileRecruteurComponent } from './profile-recruteur/profile-recruteur.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddRecruteurComponent,
     UpdateRecruteurComponent,
     DeleteRecruteurComponent,
-    ListeRecruteurComponent
+    ListeRecruteurComponent,
+    ProfileRecruteurComponent
   ],
   imports: [
     CommonModule,

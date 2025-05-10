@@ -7,6 +7,7 @@ import { DeleteCandidatComponent } from './delete-candidat/delete-candidat.compo
 import { UpdateCandidatComponent } from './update-candidat/update-candidat.component';
 import { ListeCandidatComponent } from './liste-candidat/liste-candidat.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileCandidatComponent } from './profile-candidat/profile-candidat.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddCandidatComponent,
     DeleteCandidatComponent,
     UpdateCandidatComponent,
-    ListeCandidatComponent
+    ListeCandidatComponent,
+    ProfileCandidatComponent
   ],
   imports: [
     CommonModule,

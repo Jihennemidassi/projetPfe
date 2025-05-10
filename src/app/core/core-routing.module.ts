@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SidnavComponent } from './sidnav/sidnav.component';
-import { HeaderComponent } from './header/header.component';
+import { SidnavComponent } from '../profile/sidnav/sidnav.component';
+import { HeaderComponent } from '../profile/header/header.component';
+import { HomePageComponent } from '../profile/home-page/home-page.component';
 
-const routes: Routes = [{path:"sidnav",component:SidnavComponent}
+const routes: Routes = [
+  {path:"sidnav",component:SidnavComponent},
+  {path:"",component:HomePageComponent},
   
 ];
 
@@ -11,4 +14,4 @@ const routes: Routes = [{path:"sidnav",component:SidnavComponent}
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ProfileRoutingModule { }
+export class CoreRoutingModule { }

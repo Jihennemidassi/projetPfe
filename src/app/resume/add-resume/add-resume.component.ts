@@ -93,7 +93,7 @@ export class AddResumeComponent {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   }
 
-  uploadFile() {
+  uploadResume() {
     if (!this.selectedFile) {
       alert('Please select a file first');
       return;

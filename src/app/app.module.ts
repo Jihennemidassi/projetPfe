@@ -10,14 +10,17 @@ import { CandidatModule } from './candidat/candidat.module';
 import {HttpClientModule } from '@angular/common/http';
 import { ResumeModule } from './resume/resume.module';
 import { PosteModule } from './poste/poste.module';
+import { ProfileModule } from './profile/profile.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule , AuthModule , CoreModule , RecruteurModule , CandidatModule,HttpClientModule , ResumeModule , PosteModule
+    AppRoutingModule, AuthModule, CoreModule, RecruteurModule, CandidatModule,
+    HttpClientModule, ResumeModule, PosteModule, ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]

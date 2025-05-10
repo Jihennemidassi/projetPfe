@@ -27,67 +27,40 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-gray-50 transition-colors duration-150">
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                12345
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">Senior Developer Resume</span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div>
-                                    <span class="text-gray-700">5 years experience</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="w-24 bg-gray-200 rounded-full h-2.5 mr-2">
-                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 85%"></div>
-                                    </div>
-                                    <span class="text-gray-700 font-medium">85%</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    2 hours ago
-                                </div>
-                            </td>
+                        <tr *ngFor="let resume of resumes" class="hover:bg-gray-50 transition-colors duration-150">
+                          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ resume.id }}
+                          </td>
+                          <td class="px-6 py-4">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full {{ resume.badgeColor }}">
+                              {{ resume.title }}
+                            </span>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div class="flex items-center">
+                              <div class="h-2.5 w-2.5 rounded-full {{ resume.statusColor }} mr-2"></div>
+                              <span class="text-gray-700">{{ resume.experienceYears }} years experience</span>
+                            </div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div class="flex items-center">
+                              <div class="w-24 bg-gray-200 rounded-full h-2.5 mr-2">
+                                <div class="h-2.5 rounded-full {{ getProgressBarColor(resume.matchingRate) }}" 
+                                     [style.width.%]="resume.matchingRate"></div>
+                              </div>
+                              <span class="text-gray-700 font-medium">{{ resume.matchingRate }}%</span>
+                            </div>
+                          </td>
+                          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            <div class="flex items-center text-gray-600">
+                              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                              </svg>
+                              {{ resume.lastUpdated }}
+                            </div>
+                          </td>
                         </tr>
-                        <tr class="hover:bg-gray-50 transition-colors duration-150">
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                12346
-                            </td>
-                            <td class="px-6 py-4">
-                                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">UX Designer Portfolio</span>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="h-2.5 w-2.5 rounded-full bg-yellow-500 mr-2"></div>
-                                    <span class="text-gray-700">3 years experience</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    <div class="w-24 bg-gray-200 rounded-full h-2.5 mr-2">
-                                        <div class="bg-purple-600 h-2.5 rounded-full" style="width: 72%"></div>
-                                    </div>
-                                    <span class="text-gray-700 font-medium">72%</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                <div class="flex items-center text-gray-600">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    1 day ago
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                      </tbody>
                 </table>
             </div>
 
