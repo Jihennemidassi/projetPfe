@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     this.route.events.subscribe((events:any)=>{
-      if (events.url==="/auth"){
+      if (events.url==="/auth" || events.url === "/auth/signup"){
         this.show=false
       }
       else{

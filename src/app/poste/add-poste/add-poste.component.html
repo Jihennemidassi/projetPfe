@@ -1,58 +1,58 @@
 <section class="bg-white rounded-xl shadow-sm">
-    <div class="max-w-2xl px-6 py-8 mx-auto lg:py-12">
-        <h2 class="mb-6 text-2xl font-semibold text-gray-800">Create New Post</h2>
+    <div class="max-w-2xl px-6 py-6 mx-auto lg:py-8">
+        <h2 class="mb-4 text-xl font-semibold text-gray-800">Créer une nouvelle publication</h2>
         <form [formGroup]="postForm" (ngSubmit)="Submit()">
-            <div class="grid gap-6 mb-6 sm:grid-cols-2 sm:gap-8">
+            <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6">
                 <div class="sm:col-span-2">
-                    <label for="title" class="block mb-2 text-sm font-medium text-gray-700">Post Title</label>
+                    <label for="titre" class="block mb-1 text-sm font-medium text-gray-700">Titre de la publication</label>
                     <input 
                         type="text" 
-                        formControlName="title" 
-                        id="title" 
-                        class="bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200" 
-                        placeholder="Enter post title" 
+                        formControlName="titre" 
+                        id="titre" 
+                        class="bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2 transition duration-200" 
+                        placeholder="Entrez le titre de la publication" 
                         required>
-                    <div *ngIf="postForm.get('title')?.invalid && (postForm.get('title')?.dirty || postForm.get('title')?.touched)" 
-                         class="text-red-600 text-xs mt-1.5">
-                        Please provide a title
+                    <div *ngIf="postForm.get('titre')?.invalid && (postForm.get('titre')?.dirty || postForm.get('titre')?.touched)" 
+                         class="text-red-600 text-xs mt-1">
+                        Veuillez fournir un titre
                     </div>
                 </div>
                 
                 <div class="w-full">
-                    <label for="education" class="block mb-2 text-sm font-medium text-gray-700">Education Level</label>
+                    <label for="education" class="block mb-1 text-sm font-medium text-gray-700">Niveau d'éducation</label>
                     <input 
                         type="text" 
                         formControlName="education" 
                         id="education" 
-                        class="bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200" 
-                        placeholder="e.g. Bachelor's Degree" 
+                        class="bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2 transition duration-200" 
+                        placeholder="ex: Licence / Master" 
                         required>
                 </div>
                 
                 <div class="w-full">
-                    <label for="createdAt" class="block mb-2 text-sm font-medium text-gray-700">Creation Date</label>
+                    <label for="createdAt" class="block mb-1 text-sm font-medium text-gray-700">Date de création</label>
                     <input 
                         type="date" 
                         formControlName="createdAt" 
                         id="createdAt" 
-                        class="bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200" 
+                        class="bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2 transition duration-200" 
                         required>
                 </div>
                 
                 <div>
-                    <label for="skills" class="block mb-2 text-sm font-medium text-gray-700">Required Skills</label>
+                    <label for="skills" class="block mb-1 text-sm font-medium text-gray-700">Compétences requises</label>
                     <select 
                         id="skills" 
                         (change)="onSkillSelect($event)"
-                        class="bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200">
-                        <option value="" disabled selected>Select skills</option>
-                        <option *ngFor="let skill of availableSkills" [value]="skill.id">{{skill.title}}</option>
+                        class="bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2 transition duration-200">
+                        <option value="" disabled selected>Sélectionner des compétences</option>
+                        <option *ngFor="let skill of availableSkills" [value]="skill.id">{{skill.titre}}</option>
                     </select>
-                    <!-- Display selected skills -->
-                    <div class="mt-2 flex flex-wrap gap-2">
+                    <!-- Affichage des compétences sélectionnées -->
+                    <div class="mt-1 flex flex-wrap gap-1">
                         <div *ngFor="let skill of skillsMatching" 
-                             class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full flex items-center">
-                            {{skill.idSkill.title}}
+                             class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded-full flex items-center">
+                            {{skill.idSkill.titre}}
                             <button type="button" (click)="removeSkill(skill.id)" class="ml-1 text-blue-600 hover:text-blue-800">
                                 ×
                             </button>
@@ -61,19 +61,19 @@
                 </div>
 
                 <div>
-                    <label for="experience" class="block mb-2 text-sm font-medium text-gray-700">Required Experiences</label>
+                    <label for="experience" class="block mb-1 text-sm font-medium text-gray-700">Expériences requises</label>
                     <select 
                         id="experience" 
                         (change)="onExperienceSelect($event)"
-                        class="bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200">
-                        <option value="" disabled selected>Select experiences</option>
-                        <option *ngFor="let experience of availableExperiences" [value]="experience.id">{{experience.title}}</option>
+                        class="bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2 transition duration-200">
+                        <option value="" disabled selected>Sélectionner des expériences</option>
+                        <option *ngFor="let experience of availableExperiences" [value]="experience.id">{{experience.titre}}</option>
                     </select>
-                    <!-- Display selected skills -->
-                    <div class="mt-2 flex flex-wrap gap-2">
+                    <!-- Affichage des expériences sélectionnées -->
+                    <div class="mt-1 flex flex-wrap gap-1">
                         <div *ngFor="let experience of experienceMatching" 
-                             class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full flex items-center">
-                            {{experience.idExperience.title}}
+                             class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded-full flex items-center">
+                            {{experience.idExperience.titre}}
                             <button type="button" (click)="removeExperience(experience.id)" class="ml-1 text-blue-600 hover:text-blue-800">
                                 ×
                             </button>
@@ -82,54 +82,53 @@
                 </div>
                 
                 <div>
-                    <label for="lastUpdate" class="block mb-2 text-sm font-medium text-gray-700">Last Updated</label>
+                    <label for="lastUpdate" class="block mb-1 text-sm font-medium text-gray-700">Dernière mise à jour</label>
                     <input 
                         type="date" 
                         formControlName="lastUpdate" 
                         id="lastUpdate" 
-                        class="bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition duration-200" 
+                        class="bg-gray-50 border border-gray-200 text-gray-800 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2 transition duration-200" 
                         required>
                 </div> 
                 
                 <div class="sm:col-span-2">
-                    <label for="description" class="block mb-2 text-sm font-medium text-gray-700">Post Content</label>
+                    <label for="description" class="block mb-1 text-sm font-medium text-gray-700">Contenu de la publication</label>
                     <textarea 
                         id="description" 
                         formControlName="description" 
-                        rows="6" 
-                        class="block p-3 w-full text-sm text-gray-800 bg-gray-50 rounded-md border border-gray-200 focus:ring-blue-500 focus:border-blue-500 transition duration-200" 
-                        placeholder="Write your post content here..." 
+                        rows="4" 
+                        class="block p-2 w-full text-sm text-gray-800 bg-gray-50 rounded-md border border-gray-200 focus:ring-blue-500 focus:border-blue-500 transition duration-200" 
+                        placeholder="Rédigez le contenu de votre publication ici..." 
                         required></textarea>
                 </div>
             </div>
             
-            <div class="flex items-center justify-end space-x-4 pt-2">
+            <div class="flex items-center justify-end space-x-3 pt-2">
                 <button 
                     type="button" 
                     (click)="onCancel()" 
-                    class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-200 flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-500 transition duration-200 flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
-                    Cancel
+                    Annuler
                 </button>
-                 <!-- [disabled]="postForm.invalid || isSubmitting" -->
+                <!-- [disabled]="postForm.invalid || isSubmitting" -->
                 <button 
                     type="submit" 
-                    
-                    class="px-6 py-2.5 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-70 disabled:cursor-not-allowed transition duration-200 flex items-center">
+                    class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-500 disabled:opacity-70 disabled:cursor-not-allowed transition duration-200 flex items-center">
                     <span *ngIf="!isSubmitting" class="flex items-center">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
-                        Publish Post
+                        Publier
                     </span>
                     <span *ngIf="isSubmitting" class="flex items-center">
-                        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg class="animate-spin -ml-1 mr-1 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        Processing...
+                        Traitement...
                     </span>
                 </button>
             </div>

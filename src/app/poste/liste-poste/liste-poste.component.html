@@ -8,17 +8,17 @@
                     <svg class="w-6 h-6 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                     </svg>
-                    <h2 class="text-2xl font-bold text-gray-800">Job Management</h2>
+                    <h2 class="text-2xl font-bold text-gray-800">Gestion des Postes</h2>
                 </div>
                 
-                <div class="flex flex-shrink-0 space-x-3">
+                <!-- <div class="flex flex-shrink-0 space-x-3">
                     <button type="button" routerLink="/poste/add-poste" class="flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 focus:ring-4 focus:ring-blue-200 transition-all duration-200 shadow-md" >
                         <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                         </svg>
-                        Add New Job
+                        Ajouter un Poste
                     </button>
-                </div>
+                </div> -->
             </div>
 
             <!-- Table Container -->
@@ -27,11 +27,11 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-t border-b border-gray-200">
                         <tr>
                             <th scope="col" class="px-6 py-3 font-medium">ID</th>
-                            <th scope="col" class="px-6 py-3 font-medium">Job Title</th>
+                            <th scope="col" class="px-6 py-3 font-medium">titre de Poste</th>
                             <th scope="col" class="px-6 py-3 font-medium">description</th>
-                            <th scope="col" class="px-6 py-3 font-medium">Experience</th>
+                            <!-- <th scope="col" class="px-6 py-3 font-medium">Experience</th>
                             <th scope="col" class="px-6 py-3 font-medium">Education</th>
-                            <th scope="col" class="px-6 py-3 font-medium">Skills</th>
+                            <th scope="col" class="px-6 py-3 font-medium">Skills</th> -->
                             <th scope="col" class="px-6 py-3 font-medium text-right">Actions</th>
                         </tr>
                     </thead>
@@ -40,9 +40,9 @@
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{element.id}}</td>
                             <td class="px-6 py-4">{{element.post}}</td>
                             <td class="px-6 py-4">{{element.description}}</td>
-                            <td class="px-6 py-4">{{element.experiences}}</td>
+                            <!-- <td class="px-6 py-4">{{element.experiences}}</td>
                             <td class="px-6 py-4">{{element.education}}</td>
-                            <td class="px-6 py-4">{{element.skills}}</td>
+                            <td class="px-6 py-4">{{element.skills}}</td> -->
                             <td class="px-6 py-4 text-right">
                                 <div class="flex justify-end space-x-2">
                                     <button routerLink="/poste/update-poste" class="p-2 text-gray-500 hover:text-blue-600 transition-colors">

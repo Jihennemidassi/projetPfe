@@ -20,11 +20,11 @@ export class SignupComponent {
         repPassword:['',[Validators.required,Validators.minLength(6)]]
       })
     }
-  //   submit(){
+     submit(){
   //     this.authService.login(this.form.value).subscribe(data=>{
   //   console.log("data",data)
-  //   this.route.navigateByUrl('/profile')
-  //   document.cookie="token="+data.token
+  // //   this.route.navigateByUrl('/profile')
+  // //   document.cookie="token="+data.token
   // })
     }
-
+  }

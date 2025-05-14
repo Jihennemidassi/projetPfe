@@ -3,6 +3,88 @@
         <div class="relative overflow-hidden bg-white shadow-lg rounded-xl">
             <div class="flex flex-col px-6 py-4 space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
                 <div class="flex items-center">
+                    <h2 class="text-2xl font-bold text-gray-800">liste des CV</h2>
+                </div>
+               
+            </div>
+
+            <div class="overflow-x-auto pb-4 px-4">
+                <table class="w-full text-sm text-left text-gray-600">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                        <tr class="border-b-2 border-gray-200">
+                            <th scope="col" class="px-6 py-3 font-semibold">ID</th>
+                            <th scope="col" class="px-6 py-3 font-semibold">Titre</th>
+                            <th scope="col" class="px-6 py-3 font-semibold">experience</th>
+                            <th scope="col" class="px-6 py-3 font-semibold">Matching Rate</th>
+                            <th scope="col" class="px-6 py-3 font-semibold">Last Update</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr *ngFor="let resume of resumes" class="hover:bg-gray-50 transition-colors duration-150">
+                          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ resume.id }}
+                          </td>
+                          <td class="px-6 py-4">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full {{ resume.badgeColor }}">
+                              {{ resume.title }}
+                            </span>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div class="flex items-center">
+                              <div class="h-2.5 w-2.5 rounded-full {{ resume.statusColor }} mr-2"></div>
+                              <span class="text-gray-700">{{ resume.experienceYears }} années d'experience</span>
+                            </div>
+                          </td>
+                          <td class="px-6 py-4">
+                            <div class="flex items-center">
+                              <div class="w-24 bg-gray-200 rounded-full h-2.5 mr-2">
+                                <div class="h-2.5 rounded-full {{ getProgressBarColor(resume.matchingRate) }}" 
+                                     [style.width.%]="resume.matchingRate"></div>
+                              </div>
+                              <span class="text-gray-700 font-medium">{{ resume.matchingRate }}%</span>
+                            </div>
+                          </td>
+                          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            <div class="flex items-center text-gray-600">
+                              <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                              </svg>
+                              {{ resume.lastUpdated }}
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                </table>
+            </div>
+
+            <div class="flex items-center justify-between px-6 py-4 border-t border-gray-200">
+                <div class="text-sm text-gray-600">
+                    Showing <span class="font-medium">1</span> to <span class="font-medium">2</span> of <span class="font-medium">2</span> entries
+                </div>
+                <div class="flex space-x-2">
+                    <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+                        Previous
+                    </button>
+                    <button class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700">
+                        1
+                    </button>
+                    <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- <section class="bg-gray-50 py-6 sm:py-8">
+    <div class="px-4 mx-auto max-w-screen-2xl lg:px-12">
+        <div class="relative overflow-hidden bg-white shadow-lg rounded-xl">
+            <div class="flex flex-col px-6 py-4 space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
+                <div class="flex items-center">
                     <h2 class="text-2xl font-bold text-gray-800">Resume Management</h2>
                 </div>
                 <div class="flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center lg:justify-end md:space-y-0 md:space-x-3">
@@ -82,4 +164,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
