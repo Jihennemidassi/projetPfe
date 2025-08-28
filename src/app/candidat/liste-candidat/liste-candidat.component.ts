@@ -12,10 +12,10 @@ constructor(private CandidatService:CandidatService){
 
 }
 ngOnInit(): void {
- this.CandidatService.getListcandidat().subscribe(ps=>{  
-  this.liste=ps[0]
+ this.CandidatService.getListecandidat().subscribe(cs=>{  
+  this.liste=cs[0]
   this.l=this.liste.length
-  console.log(ps)
+  console.log(cs)
 }
 
  )
@@ -30,19 +30,18 @@ ngOnInit(): void {
 }
   actionClose(){
     this.show=false
-    console.log("hello event")
-     this.CandidatService.getListcandidat().subscribe(ps=>{  
-  this.liste=ps[0]
+     this.CandidatService.getListecandidat().subscribe(cs=>{  
+  this.liste=cs[0]
   this.l=this.liste.length
-  console.log(ps)
+  console.log(cs)
      })
 }
 actionSave(){
   this.show=false
-  this.CandidatService.getListcandidat().subscribe(ps=>{  
-    this.liste=ps[0]
+  this.CandidatService.getListecandidat().subscribe(cs=>{  
+    this.liste=cs[0]
     this.l=this.liste.length
-    console.log(ps)
+    console.log(cs)
 })
 }
 

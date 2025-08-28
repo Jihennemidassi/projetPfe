@@ -7,8 +7,8 @@ import { CandidatService } from '../candidat.service';
   styleUrls: ['./delete-candidat.component.css']
 })
 export class DeleteCandidatComponent implements OnInit {
-@Input("idUser")
-idUser:number=0
+@Input("idCandidat")
+idCandidat:number=0
 @Output() 
 close: EventEmitter<any> = new EventEmitter();
 @Output() 
@@ -17,7 +17,7 @@ constructor (private serviceCandidat : CandidatService){
 
 }
 ngOnInit(): void {
-  console.log("iduser delete",this.idUser)
+  console.log("idPoste delete",this.idCandidat)
   
 }
 colseAction(){
@@ -25,11 +25,10 @@ colseAction(){
 }
 saveAction(){
   this.save.emit(true)
-  console.log("hello save", this.save)
-  this.serviceCandidat.deleteCandidat(this.idUser).subscribe(ps =>
-  {
-    console.log(ps)
-  }
-  )
+    console.log("hello save", this.save)
+    this.serviceCandidat.deleteCandidat(this.idCandidat).subscribe(ps=>{
+      console.log(ps)
+})
+ this.close.emit(true)
 }
 }

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { RecruteurRoutingModule } from './recruteur-routing.module';
-import { AddRecruteurComponent } from './add-recruteur/add-recruteur.component';
 import { UpdateRecruteurComponent } from './update-recruteur/update-recruteur.component';
 import { DeleteRecruteurComponent } from './delete-recruteur/delete-recruteur.component';
 import { ListeRecruteurComponent } from './liste-recruteur/liste-recruteur.component';
@@ -12,11 +10,10 @@ import { ProfileRecruteurComponent } from './profile-recruteur/profile-recruteur
 
 @NgModule({
   declarations: [
-    AddRecruteurComponent,
     UpdateRecruteurComponent,
     DeleteRecruteurComponent,
     ListeRecruteurComponent,
-    ProfileRecruteurComponent
+    ProfileRecruteurComponent,
   ],
   imports: [
     CommonModule,

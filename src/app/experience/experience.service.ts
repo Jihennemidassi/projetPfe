@@ -7,12 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class ExperienceService {
 
-  private apiUrl = 'http://localhost:3000/experience';
+  private apiUrl = 'http://localhost:3000/experience'; // Adjust if needed
+  
     constructor(private http: HttpClient) {}
   
   
-    createExperience(ExperienceData: any): Observable<any> {
-      return this.http.post(`${this.apiUrl}/create-experience`, ExperienceData);
+    createExperience(experienceData: any): Observable<any> {
+      return this.http.post(`${this.apiUrl}/create-experience`, experienceData);
     }
   
     getAllExperiences(): Observable<any> {
@@ -24,11 +25,11 @@ export class ExperienceService {
       return this.http.get(`${this.apiUrl}/experience/${id}`);
     }
   
-    updateExperience(id: number, ExperienceData: any): Observable<any> {
-      return this.http.patch(`${this.apiUrl}/update-experience/${id}`, ExperienceData);
+    updateExperience(id: number, experienceData: any): Observable<any> {
+      return this.http.patch(`${this.apiUrl}/update-experience/${id}`, experienceData);
     }
   
     deleteExperience(id: number): Observable<any> {
       return this.http.delete(`${this.apiUrl}/delete-experience/${id}`);
     }
-}
+  }

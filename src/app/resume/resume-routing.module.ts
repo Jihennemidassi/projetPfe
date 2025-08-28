@@ -4,8 +4,9 @@ import { ListeResumeComponent } from './liste-resume/liste-resume.component';
 import { AddResumeComponent } from './add-resume/add-resume.component';
 
 const routes: Routes = [
-  {path:'',component:ListeResumeComponent},
-  {path:'add-resume',component:AddResumeComponent}
+  {path:'liste-resume',component:ListeResumeComponent},
+  {path:'add-resume',component:AddResumeComponent},
+  {path:'delete-resume/:id',component:AddResumeComponent}
 ];
 
 @NgModule({

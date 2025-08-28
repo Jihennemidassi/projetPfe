@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ResumeService } from '../resume.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-add-resume',
@@ -13,7 +14,7 @@ export class AddResumeComponent {
   isDragging = false;
   isLoading = false; 
 
-  constructor(private resumeService: ResumeService ,  private router: Router) {
+  constructor(private resumeService: ResumeService ,  private router: Router, private auth:AuthService) {
     
     
   }
@@ -92,31 +93,16 @@ export class AddResumeComponent {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   }
-
-  uploadResume() {
-    if (!this.selectedFile) {
-      alert('Please select a file first');
-      return;
-    }
+// add-resume.component.ts
+// In your component
+uploadResume() {
+  const userId = this.auth.getCurrentUserId(); 
+  console.log('User ID everywhere:', userId); //
+  if (!this.selectedFile) return;
   
-    this.isLoading = true;
-  
-    const formData = new FormData();
-    formData.append('resume', this.selectedFile); // Field name must match backend
-  
-    this.resumeService.createResume(formData).subscribe({
-      next: (response) => {
-        console.log('Upload successful:', response);
-        alert('Resume created successfully!');
-      },
-      error: (err) => {
-        console.error('Upload error details:', err);
-        if (err.status === 500) {
-          alert('Server error. Please check console for details.');
-        }
-      },
-      complete: () => this.isLoading = false
-    });
-  }
-
+  this.resumeService.uploadResume(this.selectedFile).subscribe({
+    next: () => alert('Success!'),
+    error: (err) => console.log('Error:', err.message)
+  });
+}
 }

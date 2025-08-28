@@ -7,8 +7,8 @@ import { PosteService } from '../poste.service';
   styleUrls: ['./delete-poste.component.css']
 })
 export class DeletePosteComponent implements OnInit {
-  @Input("idUser")
-idUser:number=0
+  @Input("idPoste")
+idPoste:number=0
 @Output() 
 close: EventEmitter<any> = new EventEmitter();
 @Output() 
@@ -17,11 +17,19 @@ constructor (private servicePoste : PosteService){
 
 }
 ngOnInit(): void {
-  console.log("iduser delete",this.idUser)
+  console.log("idPoste delete",this.idPoste)
   
 }
 colseAction(){
   this.close.emit(true)
+}
+saveAction(){
+  this.save.emit(true)
+    console.log("hello save", this.save)
+    this.servicePoste.deletePoste(this.idPoste).subscribe(ps=>{
+      console.log(ps)
+})
+ this.close.emit(true)
 }
 
 }

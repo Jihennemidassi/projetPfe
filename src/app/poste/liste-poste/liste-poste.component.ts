@@ -19,12 +19,26 @@ export class ListePosteComponent implements OnInit {
   }
   show=false
   showUpdate=false
-  userId: number=0;
-  showModale(){
-    this.show=true  
+  posteId: number=0;
+   showModale(id:number){
+    this.show=true
+    this.posteId=id
+  console.log(this.show,id)
 }
-actionClose(){
+  actionClose(){
+    this.show=false
+    this.posteService.getListPoste().subscribe(ps=>{
+      this.liste=ps[0]
+      this.l=this.liste.length
+      console.log(ps)
+    })
+}
+actionSave(){
   this.show=false
-
+  this.posteService.getListPoste().subscribe(ps=>{
+    this.liste=ps[0]
+    this.l=this.liste.length
+    console.log(ps)
+  })
 }
 }

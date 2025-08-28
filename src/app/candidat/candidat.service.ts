@@ -11,7 +11,7 @@ export class CandidatService {
     return this.http.post('http://localhost:3000/candidat/create-candidat/',data) as Observable<any>
 
   }
-  getListcandidat():Observable<any>{
+  getListecandidat():Observable<any>{
     return this.http.get('http://localhost:3000/candidat/liste-candidat') as Observable<any>
 
   }

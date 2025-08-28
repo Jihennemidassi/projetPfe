@@ -19,10 +19,10 @@ export class ListeRecruteurComponent implements OnInit{
 }
 show=false
 showUpdate=false
-userId: number=0;
+recruteurId: number=0;
 showModale(id:number){
   this.show=true
-  this.userId=id
+  this.recruteurId=id
 console.log(this.show,id)}
 actionClose(){
   this.show=false

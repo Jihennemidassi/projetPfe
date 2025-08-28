@@ -28,4 +28,13 @@ export class RecruteurService {
   deleteRecruteur(id:Number):Observable<any>{
     return this.http.delete('http://localhost:3000/recruteur/delete-recruteur/'+JSON.stringify(id)) as Observable<any>
   }
+
+    getStats() {
+    return this.http.get('http://localhost:3000/recruteur/stats');
+  }
+
+     getPosteParRecruteur(id:Number) {
+    return this.http.get('http://localhost:3000/recruteur/stats/'+JSON.stringify(id)) as Observable<any>;
+  }
+ 
 }

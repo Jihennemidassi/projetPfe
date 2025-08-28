@@ -8,27 +8,41 @@ import { Observable } from 'rxjs';
 export class PosteService {
 
   constructor(private http: HttpClient) { }
-   createPoste(data:any):Observable<any>{
-     return this.http.post('http://localhost:3000/poste/create-poste/',data) as Observable<any>
- 
-   }
-   getListPoste():Observable<any>{
-     return this.http.get('http://localhost:3000/poste/liste-poste') as Observable<any>
- 
-   }
-   getPoste(id:Number):Observable<any>
-   {console.log(id)
-     return this.http.get('http://localhost:3000/poste/poste/'+JSON.stringify(id))
-   }
-   updatePoste(id:number,data:any):Observable<any>{
-     console.log(JSON.stringify(id))
-     return this.http.patch('http://localhost:3000/poste/update-poste/'+String(id),data) as Observable<any> 
-   }
- 
- 
-   deletePoste(id:Number):Observable<any>{
-     return this.http.delete('http://localhost:3000/poste/delete-poste/'+JSON.stringify(id)) as Observable<any>
-   }
- }
- 
 
+  createPoste(data: any): Observable<any> {
+    return this.http.post('http://localhost:3000/poste/create-poste/', data) as Observable<any>;
+  }
+
+  getListPoste(): Observable<any> {
+    return this.http.get('http://localhost:3000/poste/liste-poste') as Observable<any>;
+  }
+
+  getPoste(id: Number): Observable<any> {
+    console.log(id);
+    return this.http.get('http://localhost:3000/poste/poste/' + JSON.stringify(id));
+  }
+
+  updatePoste(id: number, data: any): Observable<any> {
+    console.log(JSON.stringify(id));
+    return this.http.patch('http://localhost:3000/poste/update-poste/' + String(id), data) as Observable<any>;
+  }
+
+  deletePoste(id: Number): Observable<any> {
+    return this.http.delete('http://localhost:3000/poste/delete-poste/' + JSON.stringify(id)) as Observable<any>;
+  }
+
+  // poste.service.ts
+postuler(posteId: number , idResume:number): Observable<any> {
+  const userId = localStorage.getItem('userId');
+  return this.http.get(
+    `http://localhost:3000/poste/postuler/${posteId}/${idResume}` );
+}
+getApplicants(posteId: number): Observable<any> {
+    return this.http.get(
+      `http://localhost:3000/resume/resume-poste/${posteId}`
+    );
+  }
+   getPosteByRecruteur(candidatId: number): Observable<any> {
+  return this.http.get<any>(`http://localhost:3000/recruteur/poste-by-recruteur/${candidatId}`);
+}
+}

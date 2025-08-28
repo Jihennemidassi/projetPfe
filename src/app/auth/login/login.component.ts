@@ -12,6 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
   form: FormGroup;
   loading = false;
   errorMessage: string | null = null;
@@ -30,80 +31,59 @@ export class LoginComponent {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      role: ['', [Validators.required]]
+      role: ['', Validators.required]
     });
   }
 
-  // submit() {
-  //   if (this.form.invalid) return;
-  
-  //   const credentials = {
-  //     email: this.form.value.email,
-  //     password: this.form.value.password
-  //     // Remove role from credentials sent to backend
-  //   };
-  
-  //   this.authService.login(credentials).subscribe({
-  //     next: (res) => {
-  //       console.log('Login successful', res);
-  //       // Handle redirect or token storage here
-  //     },
-  //     error: (err) => {
-  //       console.error('Login failed', err);
-  //       this.errorMessage = 'Invalid email or password'; // Show user-friendly error
-  //     }
-  //   });
-  // }
   submit() {
-    const credentials = {
+    if (this.form.invalid) {
+      this.markFormGroupTouched(this.form);
+      return;
+    }
+
+    this.loading = true;
+    this.errorMessage = null;
+
+    this.authService.seConnecter({
       email: this.form.value.email,
       password: this.form.value.password
-    };
-  
-    console.log('Sending:', credentials); // Verify payload
-  
-    this.authService.login(credentials).subscribe({
-      next: (res:any) => {
-        console.log('Login successful!', res);
-        this.navigateByRole(res.role);
-      },
-      error: (err) => {
-        console.error('Login failed:', err);
-        alert('Error: ' + err.error?.message || 'Check console');
+    }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        this.errorMessage = error.status === 401 
+          ? 'Invalid email or password' 
+          : 'Login failed. Please try again.';
+        return of(null);
+      }),
+      finalize(() => this.loading = false)
+    ).subscribe(response => {
+      console.log("repppppppppponse",response)
+      if (response) {
+        this.navigateByRole(response);
       }
     });
+    return{}
   }
 
-  private handleLoginError(error: HttpErrorResponse) {
-    if (error.status === 401) {
-      this.errorMessage = 'Invalid email or password';
-    } else if (error.status === 0) {
-      this.errorMessage = 'Network error - please check your connection';
-    } else {
-      this.errorMessage = 'An unexpected error occurred. Please try again later.';
-    }
-  }
+  private navigateByRole(data:any) {
+  const routes: Record<string, string> = {
+    admin: '/profile/home',
+    recruteur: '/recruteur/profile-recruteur',
+    candidat: '/candidat/profile-candidat'
+  };
+  const route = routes[data.role] || '/home';
+  //cookies save data 
+    document.cookie = `userRole=${data.role}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
+    document.cookie = `token=${data.acess_token}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
+    document.cookie = `id=${data.id}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
+    document.cookie = `email=${data.email}; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString()}; path=/`;
 
-  private navigateByRole(role: string) {
-    switch (role) {
-      case 'admin':
-        this.router.navigate(['/profile/home']);
-        break;
-      case 'recruteur':
-        this.router.navigate(['/recruiter/profile-recruteur']);
-        break;
-      case 'candidat':
-        this.router.navigate(['/candidate/profile-candidat']);
-        break;
-      default:
-        this.router.navigate(['/home']);
-    }
-  }
+
+  this.router.navigate([route]);
+}
 
   private markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {
       control.markAsTouched();
-
       if (control instanceof FormGroup) {
         this.markFormGroupTouched(control);
       }

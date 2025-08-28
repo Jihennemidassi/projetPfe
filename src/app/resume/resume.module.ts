@@ -5,12 +5,14 @@ import { ResumeRoutingModule } from './resume-routing.module';
 import { ListeResumeComponent } from './liste-resume/liste-resume.component';
 import { AddResumeComponent } from './add-resume/add-resume.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DeleteResumeComponent } from './delete-resume/delete-resume.component';
 
 
 @NgModule({
   declarations: [
     ListeResumeComponent,
-    AddResumeComponent
+    AddResumeComponent,
+    DeleteResumeComponent,
   ],
   imports: [
     CommonModule,

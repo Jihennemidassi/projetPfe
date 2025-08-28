@@ -1,0 +1,90 @@
+<section class="bg-gray-50 py-6 sm:py-8">
+    <div class="px-4 mx-auto max-w-screen-2xl lg:px-12">
+        <div class="relative overflow-hidden bg-white shadow-lg rounded-xl">
+            <div class="flex flex-col px-6 py-4 space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
+                <div class="flex items-center">
+                    <h2 class="text-2xl font-bold text-gray-800">Liste des CV</h2>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            
+
+            <!-- Resume List -->
+            <div  class="overflow-x-auto pb-4 px-4">
+                <table class="w-full text-sm text-left text-gray-600">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                        <tr class="border-b-2 border-gray-200">
+                            <th scope="col" class="px-6 py-3 font-semibold">ID</th>
+                            <th scope="col" class="px-6 py-3 font-semibold">Titre</th>
+                            <th scope="col" class="px-6 py-3 font-semibold">Expérience</th>
+                            <th scope="col" class="px-6 py-3 font-semibold">Taux de Correspondance</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr *ngFor="let element of resumes" class="hover:bg-gray-50 transition-colors duration-150">
+    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+        <!-- {{ resume.idCV }} -->{{ element.idCV }}
+    </td>
+ 
+      <td>{{ element.titreCV }}</td>
+    <!-- <td class="px-6 py-4">
+        <span class="text-xs font-semibold px-3 py-1 rounded-full" [ngClass]="resume.badgeColor">
+            {{ resume.titreCV }}
+        </span>
+    </td> -->
+    <td class="px-6 py-4">
+        <div class="flex items-center"  *ngFor="let item of element.experienceMatching">
+            <div class="h-2.5 w-2.5 rounded-full mr-2"></div>  
+            <!-- [ngClass]="resume.statusColor" -->
+            <span class="text-gray-700"> {{item.idExperience?.nbExperience}} années d'expérience</span>
+        </div>
+    </td>
+    <td class="px-6 py-4">
+        <div class="flex items-center">
+            <div class="w-24 bg-gray-200 rounded-full h-2.5 mr-2">
+                <div class="h-2.5 rounded-full transition-all duration-300" >
+                     <!-- [ngClass]="getProgressBarColor(resume.matchingRate)"
+                     [style.width.%]="resume.matchingRate"> -->
+                    </div>
+            </div>
+            <span class="text-gray-700 font-medium"> {{element.scoredResumes}} %</span>
+        </div>
+    </td>
+   
+</tr>
+                    </tbody>
+                </table>
+
+                <!-- Empty State -->
+                <div *ngIf="resumes.length === 0" class="text-center py-12">
+                    <div class="text-gray-500">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">Aucun CV trouvé</h3>
+                        <p class="mt-1 text-sm text-gray-500">Aucun CV ne correspond aux critères de recherche.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div *ngIf=" resumes.length > 0" class="flex items-center justify-between px-6 py-4 border-t border-gray-200">
+                <div class="text-sm text-gray-600">
+                    Affichage de <span class="font-medium">{{ resumes.length }}</span> CV(s) correspondant(s)
+                </div>
+                <div class="flex space-x-2">
+                    <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50" disabled>
+                        Précédent
+                    </button>
+                    <button class="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg hover:bg-blue-700">
+                        1
+                    </button>
+                    <button class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50" disabled>
+                        Suivant
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

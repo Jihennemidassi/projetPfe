@@ -8,9 +8,9 @@ const routes: Routes = [
   {path:'candidat', loadChildren: () => import('./candidat/candidat.module').then(m => m.CandidatModule)},
   {path:'poste', loadChildren: () => import('./poste/poste.module').then(m => m.PosteModule)},
   {path:'skill', loadChildren: () => import('./skills/skills.module').then(m => m.SkillsModule)},
-  {path:'experience', loadChildren: () => import('./experience/experience.module').then(m => m.ExperienceModule)},
+  
   {path:'resume', loadChildren: () => import('./resume/resume.module').then(m => m.ResumeModule)},
-  {path:'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)},
+   {path:'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
 ];
 
 

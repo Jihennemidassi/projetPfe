@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { SkillsService } from 'src/app/skills/skills.service';
 import { ExperienceService } from 'src/app/experience/experience.service';
 import { ExperienceMatching } from '../models/experience.interface';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-add-poste',
@@ -14,29 +15,40 @@ import { ExperienceMatching } from '../models/experience.interface';
 })
 export class AddPosteComponent {
   postForm: FormGroup;
-  isSubmitting = false;
-  availableSkills: any[] = [];
-  skillsMatching: any[] = [];
-  availableExperiences: any[] = [];
-  experienceMatching: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private postService: PosteService,
     private router: Router,
-    private skillService: SkillsService,
-    private experienceService: ExperienceService
+    private auth:AuthService
   ) {
     this.postForm = this.fb.group({
-      title: [''],
+      titrePoste: [''],
       education: [''],
-      experienceMatching: [''],
+      experience: [''],
       createdAt: [''],
-      skillsMatching: [[]], // Changed to array
+      skills: [[]], // Changed to array
       lastUpdate: [''],
-      description: ['']
+      descriptionPoste: ['']
     });
   }
+  skillsInput: string = '';
+selectedSkills: string[] = [];
+
+addSkill() {
+  if (this.skillsInput && !this.selectedSkills.includes(this.skillsInput)) {
+    this.selectedSkills.push(this.skillsInput);
+    this.skillsInput = '';
+    this.postForm.patchValue({ skills: this.selectedSkills });
+  }
+}
+
+removeSkill(skill: string) {
+  this.selectedSkills = this.selectedSkills.filter(s => s !== skill);
+  this.postForm.patchValue({ skills: this.selectedSkills });
+}
+
+
 
   ngOnInit(): void {
     // Set default dates
@@ -46,79 +58,27 @@ export class AddPosteComponent {
       lastUpdate: today
     });
 
-    // Fetch skills from service
-    this.skillService.getAllSkills().subscribe({
-      next: (skills) => {
-        console.log('Fetched skills:', skills[0]);
-        this.availableSkills = skills[0];
-    
-      },
-      
-      error: (error) => {
-        console.error('Error fetching skills:', error);
-      }
-    });
-    this.experienceService.getAllExperiences().subscribe({
-      next: (experiences) => {
-        console.log('Fetched experiences:', experiences[0]);
-        this.availableExperiences = experiences[0];
-      },
-      error: (error) => {
-        console.error('Error fetching experiences:', error);
-      }
-    });
-
-
   }
 
-  onSkillSelect(event: any): void {
-    const selectedId = parseInt(event.target.value);
-    const selectedSkill = this.availableSkills.find(skill => skill.id === selectedId);
-     let skillMactching = new SkillMatching()
-    skillMactching.idSkill = selectedSkill;
-    if (selectedSkill && !this.skillsMatching.some(s => s.id === selectedId)) {
-      this.skillsMatching.push(skillMactching);
-      console.log('Selected skill:', this.skillsMatching);
-      this.postForm.patchValue({ skillsMatching: this.skillsMatching });
-    }
-  }
-  onExperienceSelect(event: any): void {
-    const selectedId = parseInt(event.target.value);
-    const selectedExperience = this.availableExperiences.find(exp => exp.id === selectedId);
-    
-    if (selectedExperience && !this.experienceMatching.some(e => e.idExperience === selectedId)) {
-      const experienceMatching = new ExperienceMatching()
-      experienceMatching.idExperience = selectedExperience;
-      this.experienceMatching.push(experienceMatching);
-      console.log('Selected experience:', this.experienceMatching);
-      this.postForm.patchValue({ experienceMatching: this.experienceMatching });
-    }
-  }
+ Submit() {
+  const postData = {
+    ...this.postForm.value,
+    skills: this.selectedSkills // Already an array of skill names
+  };
 
-  removeSkill(skillId: number): void {
-    this.skillsMatching = this.skillsMatching.filter(skill => skill.id !== skillId);
-    this.postForm.patchValue({ skills: this.skillsMatching });
-  }
-  
-  removeExperience(experienceId: number): void {
-    this.experienceMatching = this.experienceMatching.filter(experience => experience.id !== experienceId);
-    this.postForm.patchValue({ experience: this.experienceMatching });
-  }
-
-  Submit(){
-    console.log(this.postForm.value)
-    this.postService.createPoste(this.postForm.value).subscribe(ps=>{
-      console.log(ps)
-    })
-  }
+  this.postService.createPoste(postData).subscribe({
+    next: (response) => this.router.navigate(['/profile-recruteur']),
+    error: (error) => console.error('Error:', error)
+  });
+}
 
   onCancel(): void {
     if (this.postForm.dirty) {
       if (confirm('Are you sure you want to cancel? Any unsaved changes will be lost.')) {
-        this.router.navigate(['/posts']);
+        this.router.navigate(['/poste']);
       }
     } else {
-      this.router.navigate(['/posts']);
+      this.router.navigate(['/poste']);
     }
   }
 

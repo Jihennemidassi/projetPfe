@@ -22,6 +22,7 @@ export class ResumeService {
      return this.http.get('http://localhost:3000/resume/liste-resume') as Observable<any>
  
    }
+   
    getResume(id:Number):Observable<any>
    {console.log(id)
      return this.http.get('http://localhost:3000/resume/resume/'+JSON.stringify(id))
@@ -35,15 +36,22 @@ export class ResumeService {
    deleteResume(id:Number):Observable<any>{
      return this.http.delete('http://localhost:3000/resume/delete-resume/'+JSON.stringify(id)) as Observable<any>
    }
-   uploadFile(file: File) {
-   // resume.service.ts
-  const formData = new FormData();
-  formData.append('resume', file); // Should match backend expectation
 
-  return this.http.post(
-    'http://localhost:3000/resume/upload-resume', // No ID in URL
-    formData
-    // No Content-Type header - let browser set it
-  );
+   // resume.service.ts
+uploadResume(file: File) {
+  const formData = new FormData();
+  formData.append('file', file);
+  
+  return this.http.post('http://localhost:3000/resume/upload-resume', formData, {
+    
+  });
 }
+getTopResumeesForPoste(posteId: number): Observable<any[]> {
+  return this.http.get<any[]>(`http://localhost:3000/resume/resume-poste/${posteId}`);
+}
+getResumeByCandidat(candidatId: number): Observable<any> {
+  return this.http.get<any>(`http://localhost:3000/resume/resume-by-candidat/${candidatId}`);
+}
+
+  
   }

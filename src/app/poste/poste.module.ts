@@ -7,6 +7,9 @@ import { DeletePosteComponent } from './delete-poste/delete-poste.component';
 import { UpdatePosteComponent } from './update-poste/update-poste.component';
 import { ListePosteComponent } from './liste-poste/liste-poste.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListeResumePosteComponent } from './liste-resume-poste/liste-resume-poste.component';
+import { RouterModule } from '@angular/router';
+import { PosteRecruteurComponent } from './poste-recruteur/poste-recruteur.component';
 
 
 @NgModule({
@@ -14,11 +17,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddPosteComponent,
     DeletePosteComponent,
     UpdatePosteComponent,
-    ListePosteComponent
+    ListePosteComponent,
+    ListeResumePosteComponent,
+    PosteRecruteurComponent
   ],
   imports: [
     CommonModule,
-    PosteRoutingModule , FormsModule , ReactiveFormsModule
-  ]
+    PosteRoutingModule , FormsModule , ReactiveFormsModule, RouterModule
+  ],
+  exports:[]
 })
 export class PosteModule { }

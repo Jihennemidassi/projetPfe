@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { CandidatRoutingModule } from './candidat-routing.module';
-import { AddCandidatComponent } from './add-candidat/add-candidat.component';
 import { DeleteCandidatComponent } from './delete-candidat/delete-candidat.component';
 import { UpdateCandidatComponent } from './update-candidat/update-candidat.component';
 import { ListeCandidatComponent } from './liste-candidat/liste-candidat.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileCandidatComponent } from './profile-candidat/profile-candidat.component';
+import { PosteModule } from '../poste/poste.module';
 
 
 @NgModule({
   declarations: [
-    AddCandidatComponent,
     DeleteCandidatComponent,
     UpdateCandidatComponent,
     ListeCandidatComponent,
@@ -20,7 +18,7 @@ import { ProfileCandidatComponent } from './profile-candidat/profile-candidat.co
   ],
   imports: [
     CommonModule,
-    CandidatRoutingModule , FormsModule, ReactiveFormsModule
+    CandidatRoutingModule , FormsModule, ReactiveFormsModule , PosteModule
   ]
 })
 export class CandidatModule { }
